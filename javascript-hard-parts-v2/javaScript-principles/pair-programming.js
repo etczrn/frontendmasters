@@ -1,4 +1,6 @@
 // Type JavaScript here and click "Run Code" or press Ctrl + s
+// solutions: https://github.com/CodesmithLLC/cs-bin-solutions/blob/master/callbacks.js
+
 console.log("Hello, world!");
 
 // Challenge 1
