@@ -76,32 +76,75 @@ function reduce(array, callback, initialValue) {
 // const add = function(a, b) { return a + b; }
 // console.log(reduce(nums, add, 0));
 
-// Challenge 7
-function intersection(arrays) {}
+// Challenge 7 ********************************************************
+function intersection(arrays) {
+  const result = arrays.reduce((acc, curr) => {
+    return curr.filter((c) => acc.includes(c));
+  });
+
+  return result;
+}
 
 // console.log(intersection([[5, 10, 15, 20], [15, 88, 1, 5, 7], [1, 10, 15, 5, 20]]));
 // should log: [5, 15]
 
-// Challenge 8
-function union(arrays) {}
+// Challenge 8 ********************************************************
+function union(arrays) {
+  const result = arrays.reduce((acc, curr) => {
+    const newElements = curr.filter((c) => !acc.includes(c));
+    return [...acc, ...newElements];
+  });
+
+  return result;
+}
 
 // console.log(union([[5, 10, 15], [15, 88, 1, 5, 7], [100, 15, 10, 1, 5]]));
 // should log: [5, 10, 15, 88, 1, 7, 100]
 
 // Challenge 9
-function objOfMatches(array1, array2, callback) {}
+function objOfMatches(array1, array2, callback) {
+  const obj = {};
+  for (let i = 0; i < array1.length; i++) {
+    if (callback(array1[i]) === array2[i]) {
+      obj[array1[i]] = array2[i];
+    }
+  }
+  return obj;
+}
 
 // console.log(objOfMatches(['hi', 'howdy', 'bye', 'later', 'hello'], ['HI', 'Howdy', 'BYE', 'LATER', 'hello'], function(str) { return str.toUpperCase(); }));
 // should log: { hi: 'HI', bye: 'BYE', later: 'LATER' }
 
 // Challenge 10
-function multiMap(arrVals, arrCallbacks) {}
+function multiMap(arrVals, arrCallbacks) {
+  const obj = {};
+
+  for (let i = 0; i < arrVals.length; i++) {
+    obj[arrVals[i]] = [];
+    for (let j = 0; j < arrCallbacks.length; j++) {
+      const currentValue = arrVals[i];
+      obj[arrVals[i]].push(arrCallbacks[j](currentValue));
+    }
+  }
+
+  return obj;
+}
 
 // console.log(multiMap(['catfood', 'glue', 'beer'], [function(str) { return str.toUpperCase(); }, function(str) { return str[0].toUpperCase() + str.slice(1).toLowerCase(); }, function(str) { return str + str; }]));
 // should log: { catfood: ['CATFOOD', 'Catfood', 'catfoodcatfood'], glue: ['GLUE', 'Glue', 'glueglue'], beer: ['BEER', 'Beer', 'beerbeer'] }
 
 // Challenge 11
-function objectFilter(obj, callback) {}
+function objectFilter(obj, callback) {
+  const newObj = {};
+
+  Object.entries(obj).forEach(([key, value]) => {
+    if (callback(key) === value) {
+      newObj[key] = value;
+    }
+  });
+
+  return newObj;
+}
 
 // const cities = {
 // London: 'LONDON',
