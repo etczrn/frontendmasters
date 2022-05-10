@@ -1,14 +1,22 @@
 // http://csbin.io/closures
 
 // CHALLENGE 1
-function createFunction() {}
+function createFunction() {
+  const printHello = () => console.log("hello");
+
+  return printHello;
+}
 
 // /*** Uncomment these to check your work! ***/
 // const function1 = createFunction();
 // function1(); // => should console.log('hello');
 
 // CHALLENGE 2
-function createFunctionPrinter(input) {}
+function createFunctionPrinter(input) {
+  const printInput = () => console.log(input);
+
+  return printInput;
+}
 
 // /*** Uncomment these to check your work! ***/
 // const printSample = createFunctionPrinter('sample');
@@ -40,10 +48,17 @@ const jasCounter = outer();
 // jasCounter();
 // willCounter();
 
-function addByX(x) {}
+function addByX(x) {
+  const addByX = (input) => {
+    x + input;
+    console.log(x + input);
+  };
+
+  return addByX;
+}
 
 // /*** Uncomment these to check your work! ***/
-// const addByTwo = addByX(2);
+const addByTwo = addByX(2);
 // addByTwo(1); // => should return 3
 // addByTwo(2); // => should return 4
 // addByTwo(3); // => should return 5
@@ -66,7 +81,18 @@ function once(func) {}
 // console.log(onceFunc(9001));  // => should log 6
 
 // CHALLENGE 5
-function after(count, func) {}
+function after(count, func) {
+  let delay = 0;
+  const innerFunc = () => {
+    delay++;
+
+    if (count === delay) {
+      func();
+    }
+  };
+
+  return innerFunc;
+}
 
 // /*** Uncomment these to check your work! ***/
 // const called = function() { console.log('hello') };
@@ -79,7 +105,22 @@ function after(count, func) {}
 function delay(func, wait) {}
 
 // CHALLENGE 7
-function rollCall(names) {}
+function rollCall(names) {
+  let callerIdx = 0;
+  const print = () => {
+    if (names.length > callerIdx) {
+      const result = names[callerIdx];
+      callerIdx++;
+      console.log(result);
+
+      return result;
+    }
+
+    console.log("Everyone accounted for");
+  };
+
+  return print;
+}
 
 // /*** Uncomment these to check your work! ***/
 // const rollCaller = rollCall(['Victoria', 'Juan', 'Ruth'])
